@@ -22,12 +22,31 @@
   --text-3: #999999;
   --accent: #0070f3;
   --accent-hover: #0060df;
+  --accent-tint: #f0f7ff;
   --green: #0b8043;
   --green-bg: #f0f9f4;
+  --green-border: #bbf7d0;
   --orange: #b25e00;
   --orange-bg: #fff8ee;
+  --orange-border: #fde68a;
   --red: #c0362b;
   --red-bg: #fdf2f1;
+  --red-border: #fecaca;
+  --highlight-warn-bg: #fde68a;
+  --highlight-warn-text: #78350f;
+  --highlight-danger-bg: #fecaca;
+  --highlight-danger-text: #7f1d1d;
+  --row-flash: #fef3c7;
+  --ink: #0a0a0a;
+  --ink-2: #262626;
+  --code-text: #e5e7eb;
+
+  --radius-xs: 4px;
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+
+  --focus-ring: rgba(0, 0, 0, 0.07);
 }
 
 html, body {
@@ -242,7 +261,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
   gap: 4px;
 }
 .upload-zone:hover { border-color: var(--text); background: var(--hover); }
-.upload-zone.drag-over { border-color: var(--accent); background: #f0f7ff; border-style: solid; }
+.upload-zone.drag-over { border-color: var(--accent); background: var(--accent-tint); border-style: solid; }
 .upload-zone input { display: none; }
 .upload-zone svg { color: var(--text-2); margin-bottom: 4px; }
 .upload-label { font-weight: 500; font-size: 13px; color: var(--text); }
@@ -273,7 +292,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
   color: white;
   border-color: var(--text);
 }
-.btn-primary:hover { background: #000; border-color: #000; }
+.btn-primary:hover { background: var(--ink); border-color: var(--ink); }
 .btn-primary svg { color: white; }
 .btn-small { padding: 5px 10px; font-size: 12px; height: 28px; }
 .btn-ghost {
@@ -313,7 +332,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
 .field input:focus, .field select:focus {
   outline: none;
   border-color: var(--text);
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.05);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 
 /* ===== TABLES ===== */
@@ -495,8 +514,8 @@ body.tab-summary main { grid-template-columns: 1fr; }
   background: var(--bg);
 }
 .issue.ok { border-color: var(--border); background: var(--subtle); }
-.issue.warn { border-color: #ffe2b8; background: var(--orange-bg); }
-.issue.danger { border-color: #fbd2cd; background: var(--red-bg); }
+.issue.warn { border-color: var(--orange-border); background: var(--orange-bg); }
+.issue.danger { border-color: var(--red-border); background: var(--red-bg); }
 .issue-icon {
   width: 18px;
   height: 18px;
@@ -558,7 +577,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
   padding: 7px 10px;
   background: rgba(255,255,255,0.85);
   border: 1px solid rgba(0,0,0,0.05);
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   font-size: 11px;
   cursor: pointer;
   transition: all 0.12s;
@@ -577,7 +596,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
 }
 .issue-cell:last-child { flex: 0 0 auto; }
 .issue-cell-label {
-  font-size: 9px;
+  font-size: 10px;
   color: var(--text-3);
   text-transform: uppercase;
   letter-spacing: 0.04em;
@@ -601,12 +620,12 @@ body.tab-summary main { grid-template-columns: 1fr; }
   font-weight: 700;
 }
 .issue.warn .issue-cell.highlight .issue-cell-value {
-  background: #fde68a;
-  color: #78350f;
+  background: var(--highlight-warn-bg);
+  color: var(--highlight-warn-text);
 }
 .issue.danger .issue-cell.highlight .issue-cell-value {
-  background: #fecaca;
-  color: #7f1d1d;
+  background: var(--highlight-danger-bg);
+  color: var(--highlight-danger-text);
 }
 .issue-cell-arrow {
   color: var(--text-3);
@@ -626,7 +645,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
 /* Highlight flash when jumping from issue to data row */
 @keyframes rowFlash {
   0%, 100% { background: transparent; }
-  20%, 60% { background: #fef3c7; }
+  20%, 60% { background: var(--row-flash); }
 }
 .data-table tr.row-highlight td {
   animation: rowFlash 2.5s ease-in-out;
@@ -693,14 +712,14 @@ body.tab-summary main { grid-template-columns: 1fr; }
 .kpi-grid {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
-  gap: 10px;
+  gap: 12px;
   margin-bottom: 20px;
 }
 @media (max-width: 720px) { .kpi-grid { grid-template-columns: repeat(2, 1fr); } }
 .kpi-card {
   border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 14px;
+  border-radius: var(--radius-md);
+  padding: 16px;
   background: var(--bg);
 }
 .kpi-label {
@@ -905,7 +924,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
 .goal-split {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
+  gap: 12px;
   padding-top: 14px;
   border-top: 1px solid var(--border);
 }
@@ -994,7 +1013,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
   width: 70px;
   padding: 6px 8px;
   border: 1px solid var(--border);
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   font-size: 13px;
   font-family: 'JetBrains Mono', monospace;
   background: var(--bg);
@@ -1136,7 +1155,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
 .col-map-row select {
   padding: 6px 8px;
   border: 1px solid var(--border);
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   font-size: 12px;
   background: var(--bg);
   height: 28px;
@@ -1158,9 +1177,9 @@ body.tab-summary main { grid-template-columns: 1fr; }
   width: 7px; height: 7px; border-radius: 50%;
   background: var(--text-3);
 }
-.cloud-status.connected { background: var(--green-bg); border-color: #bbf7d0; color: var(--green); }
+.cloud-status.connected { background: var(--green-bg); border-color: var(--green-border); color: var(--green); }
 .cloud-status.connected .dot { background: var(--green); }
-.cloud-status.error { background: var(--red-bg); border-color: #fecaca; color: var(--red); }
+.cloud-status.error { background: var(--red-bg); border-color: var(--red-border); color: var(--red); }
 .cloud-status.error .dot { background: var(--red); }
 
 .cloud-section { margin-bottom: 14px; }
@@ -1182,7 +1201,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
 .cloud-url-input:focus {
   outline: none;
   border-color: var(--text);
-  box-shadow: 0 0 0 3px rgba(0,0,0,0.04);
+  box-shadow: 0 0 0 3px var(--focus-ring);
 }
 .cloud-hint {
   font-size: 11px;
@@ -1231,7 +1250,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
   margin: 0 2px;
   font-family: inherit;
 }
-.btn-mini:hover { background: #262626; }
+.btn-mini:hover { background: var(--ink-2); }
 
 .cloud-gas-preview {
   margin-top: 12px;
@@ -1240,10 +1259,10 @@ body.tab-summary main { grid-template-columns: 1fr; }
 }
 .cloud-gas-title { font-size: 11px; color: var(--text-3); margin-bottom: 6px; }
 .cloud-gas-code {
-  background: #0a0a0a;
-  color: #e5e7eb;
+  background: var(--ink);
+  color: var(--code-text);
   padding: 10px 12px;
-  border-radius: 5px;
+  border-radius: var(--radius-sm);
   font-family: 'JetBrains Mono', monospace;
   font-size: 10px;
   line-height: 1.55;
@@ -1276,13 +1295,13 @@ body.tab-summary main { grid-template-columns: 1fr; }
 
 #cloudBtn.connected {
   background: var(--green-bg);
-  border-color: #bbf7d0;
+  border-color: var(--green-border);
   color: var(--green);
 }
 #cloudBtn.connected svg { color: var(--green); }
 #cloudBtn.uploading {
   background: var(--orange-bg);
-  border-color: #fde68a;
+  border-color: var(--orange-border);
   color: var(--orange);
 }
 #cloudBtn.uploading svg { color: var(--orange); animation: spin 1s linear infinite; }
@@ -1335,7 +1354,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
   transform: translateY(0);
 }
 .scroll-top:hover {
-  background: #262626;
+  background: var(--ink-2);
   transform: translateY(-2px);
   box-shadow: 0 6px 16px rgba(0,0,0,0.2);
 }
@@ -1350,7 +1369,7 @@ body.tab-summary main { grid-template-columns: 1fr; }
 .icon-lg { width: 22px; height: 22px; }
 
 /* 월정산 손익계산서 (Phase 2-1B) */
-.m-card { background: var(--panel); border: 1px solid var(--border); border-radius: 8px; padding: 14px; }
+.m-card { background: var(--panel); border: 1px solid var(--border); border-radius: var(--radius-md); padding: 16px; }
 .m-card-label { font-size: 11px; color: var(--text-3); margin-bottom: 6px; letter-spacing: 0.02em; }
 .m-card-value { font-size: 20px; font-weight: 600; letter-spacing: -0.01em; }
 .m-card-sub { font-size: 11px; color: var(--text-3); margin-top: 4px; }
@@ -2256,19 +2275,19 @@ body.tab-summary main { grid-template-columns: 1fr; }
         <li>생성된 <strong>웹 앱 URL</strong> 복사 (https://script.google.com/macros/s/.../exec)</li>
         <li>위 URL 입력란에 붙여넣고 <strong>"연결 테스트"</strong></li>
       </ol>
-      <div style="margin-top: 10px; padding: 8px 10px; background: var(--warn-bg); border-radius: 5px; font-size: 11px; color: var(--orange); line-height: 1.5;">
+      <div style="margin-top: 10px; padding: 8px 10px; background: var(--orange-bg); border-radius: var(--radius-sm); font-size: 11px; color: var(--orange); line-height: 1.5;">
         <strong>※ 액세스 권한이 반드시 "모든 사용자"여야 합니다.</strong><br>
         "나만"으로 설정하면 브라우저가 GAS에 접근할 수 없어 업로드 실패합니다.<br>
         URL이 노출돼도 본인이 작성한 코드(JSON 파일 저장만)만 실행되니 안전해요.
       </div>
-      <div style="margin-top: 8px; padding: 8px 10px; background: var(--subtle); border-radius: 5px; font-size: 11px; color: var(--text-2); line-height: 1.5;">
+      <div style="margin-top: 8px; padding: 8px 10px; background: var(--subtle); border-radius: var(--radius-sm); font-size: 11px; color: var(--text-2); line-height: 1.5;">
         <strong>이미 배포하신 경우:</strong><br>
         아래 코드가 이전 버전에서 업데이트되었어요. 기존 프로젝트의 코드를 <strong>모두 지우고 새 코드를 다시 붙여넣은 뒤</strong>,
         "배포 → 배포 관리 → 연필 ✏️ → 새 버전 → 배포"로 재배포해주세요. URL은 그대로 유지됩니다.
       </div>
-      <div style="margin-top: 8px; padding: 8px 10px; background: #fef3c7; border-radius: 5px; font-size: 11px; color: #78350f; line-height: 1.5;">
+      <div style="margin-top: 8px; padding: 8px 10px; background: var(--row-flash); border-radius: var(--radius-sm); font-size: 11px; color: var(--highlight-warn-text); line-height: 1.5;">
         <strong>🔐 보안 토큰 설정 (중요!)</strong><br>
-        새 코드의 7번째 줄 <code style="background: #fde68a; padding: 1px 4px; border-radius: 3px;">SECRET_TOKEN = '여기에_본인만의_비밀_토큰_입력'</code> 부분을
+        새 코드의 7번째 줄 <code style="background: var(--highlight-warn-bg); padding: 1px 4px; border-radius: 3px;">SECRET_TOKEN = '여기에_본인만의_비밀_토큰_입력'</code> 부분을
         <strong>본인만 아는 문자열</strong>로 바꿔주세요 (예: <code>myShop2026_xK7q</code>).<br>
         그 다음 위의 <strong>"비밀 토큰"</strong> 입력란에도 <strong>완전히 동일하게</strong> 입력해야 작동합니다.
       </div>
