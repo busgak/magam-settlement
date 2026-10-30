@@ -8717,7 +8717,7 @@ function renderIncomeStatement(data) {
   const sgnaByCategory = {};
   Object.entries(data.bySupplyCategory).forEach(([k, v]) => {
     if (COGS_CATEGORIES.includes(k)) return;
-    if (v > 0) sgnaByCategory[k] = v;
+    if (v !== 0) sgnaByCategory[k] = v;  // 음수(자산처분 등 비용 차감)도 포함 — 요약 월 손익과 일치시킴
   });
   // 인건비는 매입카테고리 '인건비' + payrollRows. payrollRows를 추가 합산.
   sgnaByCategory['인건비'] = (sgnaByCategory['인건비'] || 0) + num(data.sumPayroll);
@@ -9034,7 +9034,7 @@ function exportMonthlyExcel() {
   COGS_CATEGORIES.forEach(c => { const v = num(data.bySupplyCategory[c]); if (v > 0) { cogsByCategory[c] = v; cogsSupply += v; } });
   const grossProfit = salesSupply - cogsSupply;
   const sgnaByCategory = {};
-  Object.entries(data.bySupplyCategory).forEach(([k, v]) => { if (!COGS_CATEGORIES.includes(k) && v > 0) sgnaByCategory[k] = v; });
+  Object.entries(data.bySupplyCategory).forEach(([k, v]) => { if (!COGS_CATEGORIES.includes(k) && v !== 0) sgnaByCategory[k] = v; });  // 음수 분류(자산처분) 포함
   sgnaByCategory['인건비'] = (sgnaByCategory['인건비'] || 0) + num(data.sumPayroll);
   const otherExp = num(data.sumExtra);
   const sgnaTotal = Object.values(sgnaByCategory).reduce((s, v) => s + v, 0) + otherExp;
